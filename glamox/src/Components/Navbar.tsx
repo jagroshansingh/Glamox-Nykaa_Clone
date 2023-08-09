@@ -7,46 +7,38 @@ import {
   Stack,
   Collapse,
   Icon,
-  Link,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
+  Link, 
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
   Input,
   InputGroup,
   InputLeftElement,
   HStack,
   Image,
-  Center,
   Heading,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
-  ChevronRightIcon,
   SearchIcon,
 } from "@chakra-ui/icons";
 import { NavbarDropdown } from "./NavbarDropdown";
 
-import { useRef } from "react";
 import { CartDrawer } from "./CartDrawer";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // let auth:any = useSelector((store)=>store.AuthReducer.isAuth);
   // console.log(auth)
 
   return (
     <Box position={"sticky"} top={"0"} zIndex={5}>
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
-        color={useColorModeValue("gray.600", "white")}
+        bg={useColorModeValue("white", "gray.900")}
+        color={useColorModeValue("gray.900", "white")}
         minH={"80px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
@@ -54,8 +46,8 @@ export default function Navbar() {
         borderStyle={"solid"}
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
-        border={'0px'}
-        w={'100%'}
+        border={"0px"}
+        w={"100%"}
       >
         {/* -----------------------------------Hambrgur menu------------------------------- */}
         <Flex
@@ -79,12 +71,12 @@ export default function Navbar() {
           flex={{ base: 1 }}
           justify={{ base: "center", md: "flex-start" }}
           gap={"3"}
-          border={'0px'}
+          border={"0px"}
           // w={'50%'}
         >
           <Image
-            onClick={()=>navigate('/')}
-            cursor={'pointer'}
+            onClick={() => navigate("/")}
+            cursor={"pointer"}
             w={"7rem"}
             border={"0px"}
             paddingBottom={"2"}
@@ -97,33 +89,42 @@ export default function Navbar() {
             align={"center"}
             m={"auto"}
             justifyContent={"space-between"}
-            gap={"1"}
+            gap={"3"}
             border={"0px"}
-            width={"60%"}
+            width={"75%"}
           >
             {/* <DesktopNav /> */}
             <NavbarDropdown />
             <Heading
-              _hover={{ color: "pink.400", cursor: "pointer" }}
-              size={"sm"}
+              _hover={{
+                color: "pink.400",
+                cursor: "pointer",
+                fontFamily: "Inter",
+              }}
+              size={"md"}
             >
               Brand
             </Heading>
             <Heading
               _hover={{ color: "pink.400", cursor: "pointer" }}
-              size={"sm"}
+              size={"md"}
             >
-              Fashion
+              Glamox Fashion
+            </Heading>
+            <Heading
+              _hover={{ color: "pink.400", cursor: "pointer" }}
+              size={"md"}
+            >
+              Luxe
             </Heading>
             {/* <Heading
               _hover={{ color: "pink.400", cursor: "pointer" }}
-              size={"sm"}
-              display={{base:'none',lg:'block'}}
+              size={"md"}
             >
-              Beauty
+              Beauty Advice
             </Heading> */}
           </HStack>
-        </Flex >
+        </Flex>
 
         {/*-------------------- Login/Signup and all (Flex-end)----------------------- */}
         <HStack
@@ -133,30 +134,42 @@ export default function Navbar() {
           justify={"flex-end"}
           spacing={2}
           w={"45%"}
-          justifyContent={{base:'space-evenly',md:'space-evenly'}}
+          justifyContent={{ base: "space-evenly", md: "space-evenly" }}
         >
           <InputGroup
             border={"0px"}
             width={{ md: "9rem", lg: "15rem" }}
             display={{ base: "none", md: "inline-flex" }}
             size={"sm"}
+            gap={5}
           >
             <InputLeftElement
               pointerEvents="none"
-              children={<SearchIcon color="gray.300" />}
+              justifyContent={"center"}
+              children={<SearchIcon color="gray.500" />}
             />
-            <Input placeholder="Search" width="100%" />
+            <Input
+              placeholder="Search on Glamox"
+              width="100%"
+              borderRadius={"5"}
+              background={"pink.50"}
+              border="1px"
+              borderColor="gray.200"
+            />
           </InputGroup>
 
-
-
-          <Button 
-          onClick={()=>navigate('/login')}
-          colorScheme="pink" as={"a"} variant={"solid"} href={"#"} size={'sm'}>
+          <Button
+            onClick={() => navigate("/login")}
+            colorScheme="pink"
+            as={"a"}
+            variant={"solid"}
+            href={"#"}
+            size={"sm"}
+          >
             Login / Sign Up
           </Button>
           <Button
-            onClick={()=>navigate("/admin")}
+            onClick={() => navigate("/admin")}
             colorScheme="teal"
             variant="outline"
             display={{ base: "none", md: "inline-flex" }}
@@ -175,92 +188,6 @@ export default function Navbar() {
     </Box>
   );
 }
-
-// const DesktopNav = () => {
-//   const linkColor = useColorModeValue("gray.600", "gray.200");
-//   const linkHoverColor = useColorModeValue("gray.800", "white");
-//   const popoverContentBgColor = useColorModeValue("white", "gray.800");
-
-//   return (
-//     <Stack direction={"row"} spacing={4}>
-//       {NAV_ITEMS.map((navItem) => (
-//         <Box key={navItem.label}>
-//           <Popover trigger={"hover"} placement={"bottom-start"}>
-//             <PopoverTrigger>
-//               <Link
-//                 p={2}
-//                 href={navItem.href ?? "#"}
-//                 fontSize={"sm"}
-//                 fontWeight={500}
-//                 color={linkColor}
-//                 _hover={{
-//                   textDecoration: "none",
-//                   color: linkHoverColor,
-//                 }}
-//               >
-//                 {navItem.label}
-//               </Link>
-//             </PopoverTrigger>
-
-//             {navItem.children && (
-//               <PopoverContent
-//                 border={0}
-//                 boxShadow={"xl"}
-//                 bg={popoverContentBgColor}
-//                 p={4}
-//                 rounded={"xl"}
-//                 minW={"sm"}
-//               >
-//                 <Stack>
-//                   {navItem.children.map((child) => (
-//                     <DesktopSubNav key={child.label} {...child} />
-//                   ))}
-//                 </Stack>
-//               </PopoverContent>
-//             )}
-//           </Popover>
-//         </Box>
-//       ))}
-//     </Stack>
-//   );
-// };
-
-// const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
-//   return (
-//     <Link
-//       href={href}
-//       role={"group"}
-//       display={"block"}
-//       p={2}
-//       rounded={"md"}
-//       _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
-//     >
-//       <Stack direction={"row"} align={"center"}>
-//         <Box>
-//           <Text
-//             transition={"all .3s ease"}
-//             _groupHover={{ color: "pink.400" }}
-//             fontWeight={500}
-//           >
-//             {label}
-//           </Text>
-//           <Text fontSize={"sm"}>{subLabel}</Text>
-//         </Box>
-//         <Flex
-//           transition={"all .3s ease"}
-//           transform={"translateX(-10px)"}
-//           opacity={0}
-//           _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
-//           justify={"flex-end"}
-//           align={"center"}
-//           flex={1}
-//         >
-//           <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
-//         </Flex>
-//       </Stack>
-//     </Link>
-//   );
-// };
 
 const MobileNav = () => {
   return (
@@ -352,27 +279,4 @@ const NAV_ITEMS: Array<NavItem> = [
       },
     ],
   },
-  // {
-  //   label: "Find Work",
-  //   children: [
-  //     {
-  //       label: "Job Board",
-  //       subLabel: "Find your dream design job",
-  //       href: "#",
-  //     },
-  //     {
-  //       label: "Freelance Projects",
-  //       subLabel: "An exclusive list for contract work",
-  //       href: "#",
-  //     },
-  //   ],
-  // },
-  // {
-  //   label: 'Learn Design',
-  //   href: '#',
-  // },
-  // {
-  //   label: 'Hire Designers',
-  //   href: '#',
-  // },
 ];

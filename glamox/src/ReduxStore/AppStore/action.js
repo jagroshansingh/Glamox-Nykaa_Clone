@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useParams, useSearchParams } from "react-router-dom";
 import {
   EDIT_BOOK_SUCCESS,
   GET_BOOKS_FAILURE,
@@ -22,12 +23,15 @@ const editBookSuccess = () => {
   return { type: EDIT_BOOK_SUCCESS };
 };
 
+
+
 export const getBooks=(param = {}, category) =>
+
   (dispatch) => {
     dispatch(getBooksRequestAction());
-
+//https://trends-api.onrender.com
     axios
-      .get(`https://fine-puce-bison-cap.cyclic.app/${category}`, param)
+      .get(`https://wild-ruby-hermit-crab-tam.cyclic.app/${category}`, param)
       .then((res) => {
         // console.log(res.data)
         dispatch(getBooksSuccessAction(res.data));
@@ -38,7 +42,7 @@ export const getBooks=(param = {}, category) =>
   };
 
 export const editBook = (id, bookData) => (dispatch) => {
-  return axios.patch(`https://fine-puce-bison-cap.cyclic.app/makeup/${id}`, bookData).then(() => {
+  return axios.patch(`https://wild-ruby-hermit-crab-tam.cyclic.app/makeup/${id}`, bookData).then(() => {
     dispatch(editBookSuccess());
   });
 };

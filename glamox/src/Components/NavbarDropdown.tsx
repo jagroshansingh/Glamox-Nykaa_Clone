@@ -332,7 +332,7 @@ export const NavbarDropdown = () => {
     // <Flex justifyContent="center" mt={4}>
       <Popover placement={"auto"} isLazy trigger="hover">
         <PopoverTrigger>
-          <Heading _hover={{color:'pink.400',cursor:'pointer'}} size={'sm'}>
+          <Heading _hover={{color:'pink.400',cursor:'pointer'}} size={'md'}>
             Categories
           </Heading>
         </PopoverTrigger>
@@ -352,7 +352,9 @@ export const NavbarDropdown = () => {
                     <Tab
                     onClick={()=>{
                       // {console.log(range)}
-                      {range==="Makeup"&& navigate('/prodlist')}
+                      {range==="Makeup"&& navigate('/prodlist/makeup')}
+                      {range==="Skin"&& navigate('/prodlist/skin')}
+                      {range==="Hair"&& navigate('/prodlist/hair')}
                     }}
                       key={index}
                       _focus={{ boxShadow: "none" }}
